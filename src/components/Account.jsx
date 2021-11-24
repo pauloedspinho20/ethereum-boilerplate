@@ -7,6 +7,8 @@ import { useState } from "react";
 import Address from "./Address/Address";
 import { SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "helpers/networks";
+import { NavLink } from "react-router-dom";
+
 const styles = {
   account: {
     height: "42px",
@@ -84,6 +86,11 @@ function Account() {
               View on Explorer
             </a>
           </div>
+
+        
+          <NavLink to="/erc20balance">💰 Balances </NavLink>
+          <NavLink to="/nftBalance">🖼 NFTs </NavLink>
+          <NavLink to="/erc20transfers">💸 Transfers </NavLink>
         </Card>
         <Button
           size="large"
