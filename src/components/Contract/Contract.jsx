@@ -14,8 +14,9 @@ export default function Contract() {
   const [responses, setResponses] = useState({});
   const { contractName, networks, abi } = contractInfo;
 
-  const contractAddress = '0xb5C892ED64b551d511168F6664d8C1fFcbf57A98'
-  
+  // const contractAddress = useMemo(() => networks[1337].address, [networks]);
+  const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS
+
   useEffect(() => console.log("contractInfo", contractInfo), [contractInfo]);
 
   /**Live query */

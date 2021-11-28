@@ -3,7 +3,6 @@ import { useMoralis } from "react-moralis";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Account from "components/Account";
 import Chains from "components/Chains";
-import TokenPrice from "components/TokenPrice";
 import ERC20Balance from "components/ERC20Balance";
 import ERC20Transfers from "components/ERC20Transfers";
 import NFTBalance from "components/NFTBalance";
@@ -64,12 +63,12 @@ const App = ({ isServerInfo }) => {
           <MenuItems />
           <div style={styles.headerRight}>
             <Chains />
-            <TokenPrice
+           {/*  <TokenPrice
               address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
               chain="eth"
               image="https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
               size="40px"
-            />
+            /> */}
             <NativeBalance />
             <Account />
           </div>
@@ -97,10 +96,7 @@ const App = ({ isServerInfo }) => {
               </Route>
               <Route path="/contract">
                 <Contract />
-              </Route>
-              <Route exact path="/">
-                <Redirect to="/quickstart" />
-              </Route>
+              </Route>  
               <Route path="/nonauthenticated">
                 <>Please login using the "Authenticate" button</>
               </Route>
