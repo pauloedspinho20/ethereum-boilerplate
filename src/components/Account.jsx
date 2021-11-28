@@ -5,7 +5,7 @@ import Blockie from "./Blockie";
 import { Button, Card, Modal } from "antd";
 import { useState } from "react";
 import Address from "./Address/Address";
-import { SelectOutlined } from "@ant-design/icons";
+import { EnvironmentFilled, SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "helpers/networks";
 import { NavLink } from "react-router-dom";
 
@@ -31,11 +31,12 @@ function Account() {
   const { walletAddress, chainId } = useMoralisDapp();
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const signingMessage = "Welcome to " + process.env.REACT_APP_SITE_NAME 
   if (!isAuthenticated) {
     return (
       <div
         style={styles.account}
-        onClick={() => authenticate({ signingMessage: "Hello World!" })}
+        onClick={() => authenticate({ signingMessage })}
       >
         <p style={styles.text}>Authenticate</p>
       </div>

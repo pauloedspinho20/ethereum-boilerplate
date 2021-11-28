@@ -1,6 +1,6 @@
 import { Button, Card, Input, Typography, Form, notification } from "antd";
 import { useMemo, useState } from "react";
-import contractInfo from "contracts/Greeter.json";
+import contractInfo from "contracts/NFTv2.json";
 import Address from "components/Address/Address";
 import { useMoralis, useMoralisQuery } from "react-moralis";
 import { getEllipsisTxt } from "helpers/formatters";
@@ -12,12 +12,12 @@ const { Text } = Typography;
 export default function Contract() {
   const { Moralis } = useMoralis();
   const [responses, setResponses] = useState({});
-  const { contractName, networks, abi } = contractInfo;
+  const { contractName, abi } = contractInfo;
 
   // const contractAddress = useMemo(() => networks[1337].address, [networks]);
   const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS
 
-  useEffect(() => console.log("contractInfo", contractInfo), [contractInfo]);
+  useEffect(() => console.log("Contract Info", contractInfo), [contractInfo]);
 
   /**Live query */
   const { data } = useMoralisQuery("Events", (query) => query, [], {
