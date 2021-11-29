@@ -32,7 +32,6 @@ function NFTCollection() {
   const [ nftToSend, setNftToSend ] = useState(null);
   const [ isPending, setIsPending ] = useState(false);
   const tokenAddress = process.env.REACT_APP_CONTRACT_ADDRESS.toLowerCase() || '';
-  console.log('NFTBalances', NFTBalances, tokenAddress);
 
   async function transfer(nft, amount, receiver) {
     const options = {
