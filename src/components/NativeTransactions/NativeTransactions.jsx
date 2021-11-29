@@ -24,11 +24,6 @@ function NativeTransactions() {
     blockchainScanner = 'https://explorer.avax.network/search?query=';
   }
 
-  /* chainId === '0x1' ? `https://etherscan.io/tx/${hash}`
-  : chainId === '0x38' ? `https://bscscan.com/tx/${hash}`
-    : chainId === '0x89' ? `https://polygonscan.com/tx/${hash}`
-      : `https://explorer.avax.network/search?query=${hash}`
- */
   useEffect(() => {
     console.log(nativeTransactions);
   }, [ nativeTransactions ]);
