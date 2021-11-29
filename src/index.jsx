@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MoralisProvider } from 'react-moralis';
-import QuickStart from 'components/QuickStart';
 import { MoralisDappProvider } from './providers/MoralisDappProvider/MoralisDappProvider';
 import App from './App';
 import './index.css';
@@ -25,7 +24,7 @@ const Application = () => {
 
   return (
     <div style={ { display: 'flex', justifyContent: 'center' } }>
-      <QuickStart />
+      NO SERVER INFO
     </div>
   );
 };

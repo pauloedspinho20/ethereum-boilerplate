@@ -90,7 +90,7 @@ function Account() {
           </div>
 
           <NavLink to="/erc20balance">💰 Balances </NavLink>
-          <NavLink to="/nftBalance">🖼 NFTs </NavLink>
+          <NavLink to="/collection">🖼 NFTs </NavLink>
           <NavLink to="/erc20transfers">💸 Transfers </NavLink>
         </Card>
         <Button

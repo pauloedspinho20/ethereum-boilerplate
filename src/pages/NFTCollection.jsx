@@ -22,7 +22,7 @@ const styles = {
   },
 };
 
-function NFTBalance() {
+function NFTCollection() {
   const { data: NFTBalances } = useNFTBalances();
   const { chainId } = useMoralisDapp();
   const { Moralis } = useMoralis();
@@ -122,4 +122,4 @@ function NFTBalance() {
   );
 }
 
-export default NFTBalance;
+export default NFTCollection;

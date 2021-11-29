@@ -6,13 +6,13 @@ import Text from 'antd/lib/typography/Text';
 const ContractMethods = ({ displayedContractFunctions, responses }) => displayedContractFunctions.map((item, key) => (
   <Card title={ `${key + 1}. ${item?.name}` } size="small" style={ { marginBottom: '20px' } }>
     <Form layout="vertical" name={ `${item.name}` }>
-      { item.inputs.map(input => (
+      { item.inputs.map((input, k) => (
         <Form.Item
           label={ `${input.name} (${input.type})` }
           name={ `${input.name}` }
           required
           style={ { marginBottom: '15px' } }
-          key={ input.name }
+          key={ `${key + 1}_${item?.name}_${input?.name}_${input?.type}_${key * k}` } // WIP
         >
           <Input placeholder="input placeholder" />
         </Form.Item>

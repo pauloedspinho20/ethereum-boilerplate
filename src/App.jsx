@@ -7,15 +7,13 @@ import Account from 'components/Account';
 import Chains from 'components/Chains';
 import ERC20Balance from 'components/ERC20Balance';
 import ERC20Transfers from 'components/ERC20Transfers';
-import NFTBalance from 'pages/NFTBalance';
-import Wallet from 'components/Wallet';
+import NFTCollection from 'pages/NFTCollection';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 import NativeBalance from 'components/NativeBalance';
 import './style.css';
 import Contract from 'pages/Contract/Contract';
 import Text from 'antd/lib/typography/Text';
-import Ramper from 'components/Ramper';
 import MenuItems from './components/MenuItems';
 
 const { Header, Footer } = Layout;
@@ -85,19 +83,11 @@ const App = () => {
           ) : (
             <Switch>
               <Route path="/wallet">
-                <Wallet />
-              </Route>
-              <Route path="/erc20balance">
                 <ERC20Balance />
-              </Route>
-              <Route path="/onramp">
-                <Ramper />
-              </Route>
-              <Route path="/erc20transfers">
                 <ERC20Transfers />
               </Route>
-              <Route path="/nftBalance">
-                <NFTBalance />
+              <Route path="/collection">
+                <NFTCollection />
               </Route>
               <Route path="/contract">
                 <Contract />

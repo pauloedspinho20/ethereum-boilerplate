@@ -19,13 +19,13 @@ function MenuItems() {
       defaultSelectedKeys={ [ pathname ] }
     >
       <Menu.Item key="/wallet">
-        <NavLink to="/wallet">👛 Wallet</NavLink>
+        <NavLink to="/wallet">WALLET</NavLink>
       </Menu.Item>
-      <Menu.Item key="/nftBalance">
-        <NavLink to="/nftBalance">🖼 NFTs</NavLink>
+      <Menu.Item key="/collection">
+        <NavLink to="/collection">COLLECTION</NavLink>
       </Menu.Item>
       <Menu.Item key="/contract">
-        <NavLink to="/contract">📄 Contract</NavLink>
+        <NavLink to="/contract">CONTRACT</NavLink>
       </Menu.Item>
     </Menu>
   );
