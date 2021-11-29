@@ -1,82 +1,87 @@
-import { useEffect } from "react";
-import { useMoralis } from "react-moralis";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import Account from "components/Account";
-import Chains from "components/Chains";
-import ERC20Balance from "components/ERC20Balance";
-import ERC20Transfers from "components/ERC20Transfers";
-import NFTBalance from "components/NFTBalance";
-import Wallet from "components/Wallet";
-import { Layout } from "antd";
-import "antd/dist/antd.css";
-import NativeBalance from "components/NativeBalance";
-import "./style.css";
-import Contract from "components/Contract/Contract";
-import Text from "antd/lib/typography/Text";
-import Ramper from "components/Ramper";
-import MenuItems from "./components/MenuItems";
+import { useEffect } from 'react';
+import { useMoralis } from 'react-moralis';
+import {
+  BrowserRouter as Router, Switch, Route,
+} from 'react-router-dom';
+import Account from 'components/Account';
+import Chains from 'components/Chains';
+import ERC20Balance from 'components/ERC20Balance';
+import ERC20Transfers from 'components/ERC20Transfers';
+import NFTBalance from 'pages/NFTBalance';
+import Wallet from 'components/Wallet';
+import { Layout } from 'antd';
+import 'antd/dist/antd.css';
+import NativeBalance from 'components/NativeBalance';
+import './style.css';
+import Contract from 'pages/Contract/Contract';
+import Text from 'antd/lib/typography/Text';
+import Ramper from 'components/Ramper';
+import MenuItems from './components/MenuItems';
+
 const { Header, Footer } = Layout;
 
 const styles = {
   content: {
-    display: "flex",
-    justifyContent: "center",
-    fontFamily: "Roboto, sans-serif",
-    color: "#041836",
-    marginTop: "130px",
-    padding: "10px",
+    display: 'flex',
+    justifyContent: 'center',
+    fontFamily: 'Roboto, sans-serif',
+    color: '#041836',
+    marginTop: '130px',
+    padding: '10px',
   },
   header: {
-    position: "fixed",
+    position: 'fixed',
     zIndex: 1,
-    width: "100%",
-    background: "#fff",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    fontFamily: "Roboto, sans-serif",
-    borderBottom: "2px solid rgba(0, 0, 0, 0.06)",
-    padding: "0 10px",
-    boxShadow: "0 1px 10px rgb(151 164 175 / 10%)",
+    width: '100%',
+    background: '#fff',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    fontFamily: 'Roboto, sans-serif',
+    borderBottom: '2px solid rgba(0, 0, 0, 0.06)',
+    padding: '0 10px',
+    boxShadow: '0 1px 10px rgb(151 164 175 / 10%)',
   },
   headerRight: {
-    display: "flex",
-    gap: "20px",
-    alignItems: "center",
-    fontSize: "15px",
-    fontWeight: "600",
+    display: 'flex',
+    gap: '20px',
+    alignItems: 'center',
+    fontSize: '15px',
+    fontWeight: '600',
   },
 };
-const App = ({ isServerInfo }) => {
-  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
+const App = () => {
+  const {
+    isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading,
+  } = useMoralis();
 
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated, isWeb3Enabled]);
+  }, [ isAuthenticated, isWeb3Enabled ]);
 
   return (
-    <Layout style={{ height: "100vh", overflow: "auto" }}>
+    <Layout style={ { height: '100vh', overflow: 'auto' } }>
       <Router>
-        <Header style={styles.header}>
+        <Header style={ styles.header }>
           <Logo />
           <MenuItems />
-          <div style={styles.headerRight}>
+          <div style={ styles.headerRight }>
             <Chains />
-           {/*  <TokenPrice
+            { /*  <TokenPrice
               address="0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"
               chain="eth"
               image="https://cloudflare-ipfs.com/ipfs/QmXttGpZrECX5qCyXbBQiqgQNytVGeZW5Anewvh2jc4psg/"
               size="40px"
-            /> */}
+            /> */ }
             <NativeBalance />
             <Account />
           </div>
         </Header>
 
-        <div style={styles.content}>
-          {!isAuthenticated ? (
-            <>Please login using the "Authenticate" button</>
+        <div style={ styles.content }>
+          { !isAuthenticated ? (
+            <>Please login using the Authenticate button</>
           ) : (
             <Switch>
               <Route path="/wallet">
@@ -96,17 +101,18 @@ const App = ({ isServerInfo }) => {
               </Route>
               <Route path="/contract">
                 <Contract />
-              </Route>  
+              </Route>
               <Route path="/nonauthenticated">
-                <>Please login using the "Authenticate" button</>
+                <>Please login using the Authenticate button</>
               </Route>
             </Switch>
-          )}
+          ) }
         </div>
       </Router>
-      <Footer style={{ textAlign: "center" }}>
-        <Text style={{ display: "block" }}>
-          ⭐️ Please star this{" "}
+      <Footer style={ { textAlign: 'center' } }>
+        <Text style={ { display: 'block' } }>
+          ⭐️ Please star this
+          { ' ' }
           <a
             href="https://github.com/ethereum-boilerplate/ethereum-boilerplate/"
             target="_blank"
@@ -117,8 +123,10 @@ const App = ({ isServerInfo }) => {
           , every star makes us very happy!
         </Text>
 
-        <Text style={{ display: "block" }}>
-          🙋 You have questions? Ask them on the {""}
+        <Text style={ { display: 'block' } }>
+          🙋 You have questions? Ask them on the
+          { ' ' }
+
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -128,8 +136,9 @@ const App = ({ isServerInfo }) => {
           </a>
         </Text>
 
-        <Text style={{ display: "block" }}>
-          📖 Read more about{" "}
+        <Text style={ { display: 'block' } }>
+          📖 Read more about
+          { ' ' }
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -144,7 +153,7 @@ const App = ({ isServerInfo }) => {
 };
 
 export const Logo = () => (
-  <div style={{ display: "flex" }}>
+  <div style={ { display: 'flex' } }>
     <svg width="60" height="38" viewBox="0 0 50 38" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M43.6871 32.3986C43.5973 32.4884 43.53 32.5782 43.4402 32.6905C43.53 32.6007 43.5973 32.5109 43.6871 32.3986Z"

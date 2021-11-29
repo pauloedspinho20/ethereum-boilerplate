@@ -1,57 +1,67 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useMoralis, useMoralisWeb3Api } from "react-moralis";
-import { getEllipsisTxt } from "../helpers/formatters";
-import Blockie from "./Blockie";
-import { Input } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import {
+  string, bool, shape,
+} from 'prop-types';
+import {
+  useCallback/* , useEffect */, useRef, useState,
+} from 'react';
+import { useMoralis, useMoralisWeb3Api } from 'react-moralis';
+import { Input } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { getEllipsisTxt } from '../helpers/formatters';
+import Blockie from './Blockie';
 
-function AddressInput(props) {
+function AddressInput({ ...props }) {
   const input = useRef(null);
   const { web3 } = useMoralis();
-  const [address, setAddress] = useState("");
-  const [validatedAddress, setValidatedAddress] = useState("");
-  const [isDomain, setIsDomain] = useState(false);
+  const [ address, setAddress ] = useState('');
+  const [ validatedAddress, setValidatedAddress ] = useState('');
+  const [ isDomain, setIsDomain ] = useState(false);
   const {
     resolve: { resolveDomain },
   } = useMoralisWeb3Api();
 
+  const isSupportedDomain = domain => [ '.eth', '.crypto', '.coin', '.wallet', '.bitcoin', '.x', '.888', '.nft', '.dao', '.blockchain' ].some(tld => domain.endsWith(tld));
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
+  /*   useEffect(() => {
     if (validatedAddress) props.onChange(isDomain ? validatedAddress : address);
-  }, [props, validatedAddress, isDomain, address]);
+  }, [ props, validatedAddress, isDomain, address ]); */
 
   const updateAddress = useCallback(
-    async (value) => {
+    async value => {
       setAddress(value);
       if (isSupportedDomain(value)) {
-        const processPromise = function (promise) {
+        const processPromise = promise => {
           promise
-            .then((addr) => {
+            .then(addr => {
               setValidatedAddress(addr);
               setIsDomain(true);
             })
             .catch(() => {
-              setValidatedAddress("");
+              setValidatedAddress('');
             });
         };
-        if (value.endsWith(".eth")) {
+        if (value.endsWith('.eth')) {
           processPromise(web3.eth.ens.getAddress(value));
-        } else {
+        }
+        else {
           processPromise(
             resolveDomain({
               domain: value,
-            }).then((r) => r.address)
+            }).then(r => r.address),
           );
         }
-      } else if (value.length === 42) {
+      }
+      else if (value.length === 42) {
         setValidatedAddress(getEllipsisTxt(value, 10));
         setIsDomain(false);
-      } else {
-        setValidatedAddress("");
+      }
+      else {
+        setValidatedAddress('');
         setIsDomain(false);
       }
     },
-    [resolveDomain, web3.eth.ens]
+    [ resolveDomain, web3.eth.ens ],
   );
 
   const Cross = () => (
@@ -65,14 +75,14 @@ function AddressInput(props) {
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round"
-      onClick={() => {
-        setValidatedAddress("");
+      onClick={ () => {
+        setValidatedAddress('');
         setIsDomain(false);
-        setTimeout(function () {
+        setTimeout(() => {
           input.current.focus();
         });
-      }}
-      style={{ cursor: "pointer" }}
+      } }
+      style={ { cursor: 'pointer' } }
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <line x1="18" y1="6" x2="6" y2="18" />
@@ -82,32 +92,42 @@ function AddressInput(props) {
 
   return (
     <Input
-      ref={input}
+      ref={ input }
       size="large"
-      placeholder={props.placeholder ? props.placeholder : "Public address"}
+      placeholder={ props.placeholder ? props.placeholder : 'Public address' }
       prefix={
         isDomain || address.length === 42 ? (
-          <Blockie address={(isDomain ? validatedAddress : address).toLowerCase()} size={8} scale={3} />
+          <Blockie address={ (isDomain ? validatedAddress : address).toLowerCase() } size={ 8 } scale={ 3 } />
         ) : (
           <SearchOutlined />
         )
       }
-      suffix={validatedAddress && <Cross />}
-      autoFocus={props.autoFocus}
-      value={isDomain ? `${address} (${getEllipsisTxt(validatedAddress)})` : validatedAddress || address}
-      onChange={(e) => {
+      suffix={ validatedAddress && <Cross /> }
+      autoFocus={ props.autoFocus }
+      value={ isDomain ? `${address} (${getEllipsisTxt(validatedAddress)})` : validatedAddress || address }
+      onChange={ e => {
         updateAddress(e.target.value);
-      }}
-      disabled={validatedAddress}
-      style={validatedAddress ? { ...props?.style, border: "1px solid rgb(33, 191, 150)" } : { ...props?.style }}
+      } }
+      disabled={ validatedAddress }
+      style={ validatedAddress ? { ...props?.style, border: '1px solid rgb(33, 191, 150)' } : { ...props?.style } }
     />
   );
 }
 
-function isSupportedDomain(domain) {
-  return [".eth", ".crypto", ".coin", ".wallet", ".bitcoin", ".x", ".888", ".nft", ".dao", ".blockchain"].some((tld) =>
-    domain.endsWith(tld)
-  );
-}
+AddressInput.propTypes = {
+  address: string,
+  style: shape({}),
+  autoFocus: bool,
+  placeholder: string,
+  // onChange: shape({}),
+};
+
+AddressInput.defaultProps = {
+  address: '',
+  style: null,
+  autoFocus: false,
+  placeholder: '',
+  // onChange: null,
+};
 
 export default AddressInput;

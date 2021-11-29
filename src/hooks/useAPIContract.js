@@ -1,6 +1,6 @@
-import { useMoralisWeb3Api, useMoralisWeb3ApiCall } from "react-moralis";
+import { useMoralisWeb3Api, useMoralisWeb3ApiCall } from 'react-moralis';
 
-export const useAPIContract = (options) => {
+const useAPIContract = options => {
   const { native } = useMoralisWeb3Api();
 
   const {
@@ -10,5 +10,9 @@ export const useAPIContract = (options) => {
     isLoading,
   } = useMoralisWeb3ApiCall(native.runContractFunction, { ...options });
 
-  return { runContractFunction, contractResponse, error, isLoading };
+  return {
+    runContractFunction, contractResponse, error, isLoading,
+  };
 };
+
+export default useAPIContract;

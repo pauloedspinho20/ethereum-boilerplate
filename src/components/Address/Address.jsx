@@ -1,29 +1,31 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { useMoralisDapp } from "../../providers/MoralisDappProvider/MoralisDappProvider";
-import { getEllipsisTxt } from "../../helpers/formatters";
-import Blockie from "../Blockie";
-import "./identicon.css";
+import {
+  string, bool, shape,
+} from 'prop-types';
+import { useEffect, useState } from 'react';
+import { useMoralisDapp } from '../../providers/MoralisDappProvider/MoralisDappProvider';
+import { getEllipsisTxt } from '../../helpers/formatters';
+import Blockie from '../Blockie';
+import './identicon.css';
 
 const styles = {
   address: {
-    height: "36px",
-    display: "flex",
-    gap: "5px",
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
-    borderRadius: "9px",
-    alignItems: "center",
+    height: '36px',
+    display: 'flex',
+    gap: '5px',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    borderRadius: '9px',
+    alignItems: 'center',
   },
 };
 
-function Address(props) {
+function Address({ ...props }) {
   const { walletAddress } = useMoralisDapp();
-  const [address, setAddress] = useState();
-  const [isClicked, setIsClicked] = useState(false);
+  const [ address, setAddress ] = useState();
+  const [ isClicked, setIsClicked ] = useState(false);
 
   useEffect(() => {
     setAddress(props?.address || walletAddress);
-  }, [walletAddress, props]);
+  }, [ walletAddress, props ]);
 
   if (!address) return null;
 
@@ -38,11 +40,11 @@ function Address(props) {
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round"
-      style={{ cursor: "pointer" }}
-      onClick={() => {
-        navigator.clipboard.writeText(address);
+      style={ { cursor: 'pointer' } }
+      onClick={ () => {
+        window.navigator.clipboard.writeText(address);
         setIsClicked(true);
-      }}
+      } }
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M15 3v4a1 1 0 0 0 1 1h4" />
@@ -53,14 +55,30 @@ function Address(props) {
   );
 
   return (
-    <div style={{ ...styles.address, ...props.style }}>
-      {props.avatar === "left" && <Blockie address={address} size={7} />}
-      <p>{props.size ? getEllipsisTxt(address, props.size) : address}</p>
-      {props.avatar === "right" && <Blockie address={address} size={7} />}
-      {props.copyable && (isClicked ? <Check /> : <Copy />)}
+    <div style={ { ...styles.address, ...props.style } }>
+      { props.avatar === 'left' && <Blockie address={ address } size={ 7 } /> }
+      <p>{ props.size ? getEllipsisTxt(address, props.size) : address }</p>
+      { props.avatar === 'right' && <Blockie address={ address } size={ 7 } /> }
+      { props.copyable && (isClicked ? <Check /> : <Copy />) }
     </div>
   );
 }
+
+Address.propTypes = {
+  address: string,
+  avatar: string,
+  size: string,
+  copyable: bool,
+  style: shape({}),
+};
+
+Address.defaultProps = {
+  address: '',
+  avatar: '',
+  size: '',
+  copyable: true,
+  style: null,
+};
 
 export default Address;
 
