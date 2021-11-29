@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { MoralisProvider } from 'react-moralis';
 import { MoralisDappProvider } from './providers/MoralisDappProvider/MoralisDappProvider';
 import App from './App';
-import './index.css';
+import './scss/style.scss';
 
 /** Get your free Moralis Account https://moralis.io/ */
 

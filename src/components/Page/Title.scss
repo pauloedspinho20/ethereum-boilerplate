@@ -1,0 +1,39 @@
+@import 'scss/init';
+
+.page-main-title {
+  @include no-select();
+
+  width: 100%;
+  display: block;
+  font-size: 1.88rem;
+  line-height: 1em;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-align: center;
+  background: $gradient_yellow;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 3px 9px 15px rgba(13, 21, 62, 0.6);
+  margin-bottom: 70px;
+  position: relative;
+
+  @include breakpoint(until-portrait) {
+    font-size: 1.5rem;
+    line-height: 1.2em;
+  }
+
+  small {
+    width: 100%;
+    height: auto;
+    display: block;
+    text-align: center;
+    position: absolute;
+    bottom: -30px;
+    font-size: 0.65rem;
+    color: rgba($white, 0.75);
+    letter-spacing: 0.2em;
+    -webkit-text-fill-color: rgba($white, 0.75);
+    background-clip: unset;
+  }
+}
