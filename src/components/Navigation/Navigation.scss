@@ -113,12 +113,11 @@ header#main-header {
 
     a.nav-item,
     span.nav-item {
-      font-size: 0.875rem;
+      font-size: 1em;
       line-height: 1em;
-      font-weight: 300;
       letter-spacing: 0.02em;
       text-transform: uppercase;
-      color: $white;
+      color: $black;
       position: relative;
       transition: all 0.2s;
       cursor: pointer;

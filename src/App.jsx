@@ -7,6 +7,7 @@ import ERC20Balance from 'components/ERC20Balance';
 import ERC20Transfers from 'components/ERC20Transfers';
 import Header from 'containers/Header/Header';
 import NFTCollection from 'pages/NFTCollection';
+import Homepage from 'pages/Homepage/Homepage';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 import Contract from 'pages/Contract/Contract';
@@ -34,6 +35,9 @@ const App = () => {
             <>Please login using the Authenticate button</>
           ) : (
             <Switch>
+              <Route path="/home">
+                <Homepage />
+              </Route>
               <Route path="/wallet">
                 <ERC20Balance />
                 <ERC20Transfers />

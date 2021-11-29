@@ -41,9 +41,9 @@ Metadata.propTypes = {
 };
 
 Metadata.defaultProps = {
-  description: process.env.REACT_SITE_DESCRIPTION,
+  description: process.env.REACT_APP_SITE_DESCRIPTION,
   image: `${origin}/media/share-img.jpg`,
-  title: process.env.REACT_SITE_NAME,
+  title: process.env.REACT_APP_SITE_NAME,
 };
 
 export default Metadata;

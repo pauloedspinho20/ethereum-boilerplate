@@ -1,7 +1,8 @@
 import { useMoralisDapp } from 'providers/MoralisDappProvider/MoralisDappProvider';
 import { useMoralis } from 'react-moralis';
 import { getEllipsisTxt } from 'helpers/formatters';
-import { Button, Card, Modal } from 'antd';
+import { Card, Modal } from 'antd';
+import Button from 'components/Button/Button';
 import { useState } from 'react';
 import { SelectOutlined } from '@ant-design/icons';
 import { getExplorer } from 'helpers/networks';
@@ -94,15 +95,8 @@ function Account() {
           <NavLink to="/erc20transfers">💸 Transfers </NavLink>
         </Card>
         <Button
-          size="large"
-          type="primary"
-          style={ {
-            width: '100%',
-            marginTop: '10px',
-            borderRadius: '0.5rem',
-            fontSize: '16px',
-            fontWeight: '500',
-          } }
+          theme="blue"
+          size="s"
           onClick={ () => {
             logout();
             setIsModalVisible(false);

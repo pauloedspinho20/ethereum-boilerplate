@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Logo from 'components/Logo/Logo';
 import PageContainer from 'components/Page/Container';
 // import Wallet from 'components/Wallet/Wallet';
@@ -32,12 +33,16 @@ const Navigation = () => {
       <PageContainer>
         <div className="row">
           <div className="col">
-            <h1 className="main-logo">
+
+            <Link
+              className="main-logo"
+              to="/home"
+            >
               <Logo />
-            </h1>
+            </Link>
 
             <nav id="main-nav" className="d-inline-flex">
-              <ul className="d-inline-flex">
+              <ul className="d-inline-flex me-3">
                 <NavigationItems />
               </ul>
               <div className="d-inline-flex">

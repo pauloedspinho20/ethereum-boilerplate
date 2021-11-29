@@ -11,7 +11,7 @@ export const metamaskLink = 'https://metamask.io/download.html';
 export const menuLinks = [
   {
     label: 'Home',
-    link: '/',
+    link: '/home',
   },
   {
     label: 'Wallet',
@@ -21,10 +21,10 @@ export const menuLinks = [
     label: 'Collection',
     link: '/collection',
   },
-  {
+/*   {
     label: 'Contract',
     link: '/contract',
-  },
+  }, */
 ];
 
 export const cookiesBanner = {
