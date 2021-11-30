@@ -1,10 +1,7 @@
-const useIPFS = () => {
-  const resolveLink = url => {
-    if (!url || !url.includes('ipfs://')) return url;
-    return url.replace('ipfs://', 'https://gateway.ipfs.io/ipfs/');
-  };
+import { useCallback } from 'react';
 
-  return { resolveLink };
-};
+import { ipfsUrl } from 'config';
 
-export default useIPFS;
+const useIpfs = () => useCallback(url => (url?.src || url)?.replace(/^ipfs:\/\/ipfs\//, ipfsUrl), []);
+
+export default useIpfs;

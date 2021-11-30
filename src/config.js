@@ -6,7 +6,7 @@ export const maintenanceToken = '5ca5930cf489cac1741661174566d0c692e5e0eb51f5ae'
 
 export const maintenanceMessage = '';
 
-export const metamaskLink = 'https://metamask.io/download.html';
+export const ipfsUrl = 'ipfs://';
 
 export const menuLinks = [
   {
