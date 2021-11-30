@@ -62,32 +62,6 @@ header#main-header {
     .logo-img-dark {
       display: none;
     }
-
-    .beta-badge {
-      background: $gradient_blue;
-      color: $white;
-      font-size: 0.75rem;
-      line-height: 1em;
-      font-weight: 500;
-      position: absolute;
-      top: 11px;
-      left: 100%;
-      margin-left: 20px;
-      padding: 6px 4px 3px 5px;
-      pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      transform-origin: 0 0;
-
-      @include breakpoint(until-desktop) {
-        top: 6px;
-      }
-
-      @include breakpoint(until-landscape) {
-        top: 6px;
-        transform: scale(0.7);
-        margin-left: 10px;
-      }
-    }
   }
 
   #main-nav {
@@ -115,6 +89,7 @@ header#main-header {
     span.nav-item {
       font-size: 1em;
       line-height: 1em;
+      font-weight: 600;
       letter-spacing: 0.02em;
       text-transform: uppercase;
       color: $black;
@@ -122,7 +97,7 @@ header#main-header {
       transition: all 0.2s;
       cursor: pointer;
 
-      &:hover { color: $yellow; }
+      &:hover { color: $orange; }
     }
 
     .nav-item-li {
@@ -151,13 +126,12 @@ header#main-header {
             display: block;
             font-size: 0.8125rem;
             line-height: 1em;
-            font-weight: 400;
             letter-spacing: 0.02em;
             text-transform: uppercase;
             color: $white;
             padding-left: 20px;
             transition: all 0.15s;
-            &:hover { color: $yellow; }
+            &:hover { color: $orange; }
           }
 
           &:first-child {
@@ -184,7 +158,7 @@ header#main-header {
     }
 
     a.nav-item--current_page {
-      color: $yellow;
+      color: $orange;
       position: relative;
       cursor: default;
 
@@ -192,7 +166,7 @@ header#main-header {
         content: '';
         width: 100%;
         height: 2px;
-        background: $gradient_yellow;
+        background: $orange;
         display: block;
         position: absolute;
         bottom: -7px;
@@ -209,7 +183,7 @@ header#main-header {
 
     .nav-item-submenu-hovered {
       a.nav-item {
-        color: $yellow;
+        color: $orange;
       }
     }
 
@@ -328,7 +302,7 @@ header#main-header {
       padding: 3px 0;
       display: inline-block;
 
-      &:hover { color: $yellow; }
+      &:hover { color: $orange; }
     }
 
     // stylelint-disable-next-line csstools/use-nesting
@@ -345,7 +319,7 @@ header#main-header {
     }
 
     a.nav-item--current_page {
-      color: $yellow;
+      color: $orange;
       position: relative;
       cursor: default;
 
@@ -411,8 +385,8 @@ header#main-header {
       #main-nav {
         top: 0;
 
-        a.nav-item--current_page { color: $yellow; }
-        .nav-item-submenu-hovered a.nav-item { color: $yellow; }
+        a.nav-item--current_page { color: $orange; }
+        .nav-item-submenu-hovered a.nav-item { color: $orange; }
 
         .btn-connect-wallet {
           position: relative;

@@ -1,21 +1,14 @@
 @import 'scss/init';
 
 .page-main-title {
-  @include no-select();
-
   width: 100%;
   display: block;
-  font-size: 1.88rem;
-  line-height: 1em;
-  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
   text-align: center;
-  background: $gradient_yellow;
+  background: $orange;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 3px 9px 15px rgba(13, 21, 62, 0.6);
-  margin-bottom: 70px;
+  margin-bottom: 30px;
   position: relative;
 
   @include breakpoint(until-portrait) {

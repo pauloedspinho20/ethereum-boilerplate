@@ -101,8 +101,13 @@
     color: $white;
   }
 
-  &.btn--bg-blue {
-    background: $blue;
+  &.btn--bg-yellow {
+    background: $yellow;
+    color: $black;
+  }
+
+  &.btn--bg-orange {
+    background: $orange;
     color: $white;
   }
 
@@ -136,28 +141,8 @@
     color: $blue;
   }
 
-  &.btn--hover-txt-blue:hover:not([disabled]) {
-    color: $blue;
-  }
-
-  &.btn--hover-bg-blue,
   &.btn--hover-bg-blue {
     transition: all 0.2s;
-
-    & {
-      background: darken($blue, 10%);
-      color: $white;
-    }
-
-    & {
-      background: darken($blue, 10%);
-      color: $white;
-    }
-  }
-
-  &.btn--bg-blue-gradient {
-    background: $gradient_blue;
-    color: $white;
   }
 
   &.btn--bg-blue-gradient {

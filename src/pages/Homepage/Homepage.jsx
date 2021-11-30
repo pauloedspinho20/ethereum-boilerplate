@@ -1,12 +1,15 @@
 import PageContainer from 'components/Page/Container';
-
+import PageTitle from 'components/Page/Title';
+import MintCanvas from 'components/Canvas/MintCanvas';
+import PageDescription from 'components/Page/Description';
 // import './style.scss';
 
 const Homepage = () => (
   <>
     <PageContainer>
       <div className="row">
-        <h2 className="page-main-title">{ process.env.REACT_APP_SITE_NAME }</h2>
+        <PageTitle>{ process.env.REACT_APP_SITE_NAME }</PageTitle>
+        <PageDescription>{ process.env.REACT_APP_SITE_DESCRIPTION }</PageDescription>
       </div>
     </PageContainer>
 
@@ -14,7 +17,7 @@ const Homepage = () => (
       <PageContainer>
         <div className="row">
           <div className="col">
-            Content
+            <MintCanvas />
           </div>
         </div>
       </PageContainer>

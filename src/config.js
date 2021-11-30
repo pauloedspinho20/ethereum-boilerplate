@@ -13,10 +13,10 @@ export const menuLinks = [
     label: 'Home',
     link: '/home',
   },
-  {
+  /*   {
     label: 'Wallet',
     link: '/wallet',
-  },
+  }, */
   {
     label: 'Collection',
     link: '/collection',

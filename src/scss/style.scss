@@ -8,9 +8,10 @@
 @import 'bootstrap/scss/type';
 @import 'init';
 @import 'bootstrap/scss/bootstrap-grid';
-@import 'bootstrap/scss/grid';
+// @import 'bootstrap/scss/grid';
 @import 'bootstrap/scss/helpers';
 @import 'bootstrap/scss/card';
+@import 'bootstrap/scss/forms';
 // @import 'bootstrap/scss/modal';
 
 /* @import 'functions';
@@ -110,11 +111,16 @@ body {
 #main-content {
   min-height: 800px;
   padding-top: 200px;
+  padding-bottom: 100px;
   background-color: $grey;
 
   @include breakpoint(until-landscape) {
     padding-top: 120px;
   }
+}
+
+a {
+  text-decoration: none;
 }
 
 a,
@@ -266,12 +272,11 @@ button {
 }
 
 label:not(.lbl-inline) {
-  font-size: 0.625rem;
+  font-size: 0.8rem;
   line-height: 1em;
   letter-spacing: 0.2em;
   font-weight: 300;
   text-transform: uppercase;
-  color: $white;
   display: block;
   margin-bottom: 8px;
 }

@@ -3,8 +3,8 @@ import { useMoralis } from 'react-moralis';
 import {
   BrowserRouter as Router, Switch, Route,
 } from 'react-router-dom';
-import ERC20Balance from 'components/ERC20Balance';
-import ERC20Transfers from 'components/ERC20Transfers';
+/* import ERC20Balance from 'components/ERC20Balance';
+import ERC20Transfers from 'components/ERC20Transfers'; */
 import Header from 'containers/Header/Header';
 import NFTCollection from 'pages/NFTCollection';
 import Homepage from 'pages/Homepage/Homepage';
@@ -38,10 +38,10 @@ const App = () => {
               <Route path="/home">
                 <Homepage />
               </Route>
-              <Route path="/wallet">
+              { /*  <Route path="/wallet">
                 <ERC20Balance />
                 <ERC20Transfers />
-              </Route>
+              </Route> */ }
               <Route path="/collection">
                 <NFTCollection />
               </Route>

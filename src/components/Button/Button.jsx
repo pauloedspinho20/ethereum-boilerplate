@@ -77,6 +77,7 @@ Button.propTypes = {
     'blue',
     'blue-gradient',
     'none',
+    'orange',
     'orange-gradient',
     'outline-orange',
     'outline-white',
