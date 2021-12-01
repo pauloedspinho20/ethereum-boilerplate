@@ -1,123 +1,145 @@
 import { useEffect, useState } from 'react';
-import { Menu, Dropdown, Button } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
 import { useChain } from 'react-moralis';
+import Select from 'react-select';
 import {
   AvaxLogo, PolygonLogo, BSCLogo, ETHLogo,
 } from './Logos';
 
-const styles = {
-  item: {
-    display: 'flex',
-    alignItems: 'center',
-    height: '42px',
-    fontWeight: '500',
-    fontFamily: 'Roboto, sans-serif',
-    fontSize: '14px',
-    padding: '0 10px',
-  },
-  button: {
-    border: '2px solid rgb(231, 234, 243)',
-    borderRadius: '12px',
-  },
-};
-
 const menuItems = [
   {
-    key: '0x1',
-    value: 'Ethereum',
-    icon: <ETHLogo />,
+    value: '0x1',
+    label: (
+      <div>
+        <ETHLogo />
+        { ' ' }
+        Ethereum
+      </div>
+    ),
   },
   {
-    key: '0x539',
-    value: 'Local Chain',
-    icon: <ETHLogo />,
+    value: '0x539',
+    label: (
+      <div>
+        <ETHLogo />
+        { ' ' }
+        Local Chain
+      </div>
+    ),
   },
   {
-    key: '0x3',
-    value: 'Ropsten Testnet',
-    icon: <ETHLogo />,
+    value: '0x3',
+    label: (
+      <div>
+        <ETHLogo />
+        { ' ' }
+        Ropsten Testnet
+      </div>
+    ),
   },
   {
-    key: '0x4',
-    value: 'Rinkeby Testnet',
-    icon: <ETHLogo />,
+    value: '0x4',
+    label: (
+      <div>
+        <ETHLogo />
+        { ' ' }
+        Rinkeby Testnet
+      </div>
+    ),
   },
   {
-    key: '0x2a',
-    value: 'Kovan Testnet',
-    icon: <ETHLogo />,
+    value: '0x2a',
+    label: (
+      <div>
+        <ETHLogo />
+        { ' ' }
+        Kovan Testnet
+      </div>
+    ),
   },
   {
-    key: '0x5',
-    value: 'Goerli Testnet',
-    icon: <ETHLogo />,
+    value: '0x5',
+    label: (
+      <div>
+        <ETHLogo />
+        { ' ' }
+        Goerli Testnet
+      </div>
+    ),
   },
   {
-    key: '0x38',
-    value: 'Binance',
-    icon: <BSCLogo />,
+    value: '0x38',
+    label: (
+      <div>
+        <BSCLogo />
+        { ' ' }
+        Binance
+      </div>
+    ),
   },
   {
-    key: '0x61',
-    value: 'Smart Chain Testnet',
-    icon: <BSCLogo />,
+    value: '0x61',
+    label: (
+      <div>
+        <BSCLogo />
+        { ' ' }
+        Smart Chain Testnet
+      </div>
+    ),
   },
   {
-    key: '0x89',
-    value: 'Polygon',
-    icon: <PolygonLogo />,
+    value: '0x89',
+    label: (
+      <div>
+        <PolygonLogo />
+        { ' ' }
+        Polygon
+      </div>
+    ),
   },
   {
-    key: '0x13881',
-    value: 'Mumbai',
-    icon: <PolygonLogo />,
+    value: '0x13881',
+    label: (
+      <div>
+        <PolygonLogo />
+        { ' ' }
+        Mumbai
+      </div>
+    ),
   },
   {
-    key: '0xa86a',
-    value: 'Avalanche',
-    icon: <AvaxLogo />,
+    value: '0xa86a',
+    label: (
+      <div>
+        <AvaxLogo />
+        Avalanche
+      </div>
+    ),
   },
 ];
 
 function Chains() {
   const { switchNetwork, chainId, chain } = useChain();
-  const [ selected, setSelected ] = useState({});
+  const [ selected, setSelected ] = useState(null);
 
-  console.log('chain', chain);
+  const handleChange = option => {
+    setSelected(option.value);
+    switchNetwork(option.value);
+  };
 
   useEffect(() => {
     if (!chainId) return null;
-    const newSelected = menuItems.find(item => item.key === chainId);
+    const newSelected = menuItems.find(item => item.value === chainId);
     setSelected(newSelected);
-    console.log('current chainId: ', chainId);
     return () => {};
-  }, [ chainId ]);
-
-  const handleMenuClick = e => {
-    console.log('switch to: ', e.key);
-    switchNetwork(e.key);
-  };
-
-  const menu = (
-    <Menu onClick={ handleMenuClick }>
-      { menuItems.map(item => (
-        <Menu.Item key={ item.key } icon={ item.icon } style={ styles.item }>
-          <span style={ { marginLeft: '5px' } }>{ item.value }</span>
-        </Menu.Item>
-      )) }
-    </Menu>
-  );
+  }, [ chainId, chain ]);
 
   return (
-    <div>
-      <Dropdown overlay={ menu } trigger={ [ 'click' ] }>
-        <Button key={ selected?.key } icon={ selected?.icon } style={ { ...styles.button, ...styles.item } }>
-          <span style={ { marginLeft: '5px' } }>{ selected?.value }</span>
-          <DownOutlined />
-        </Button>
-      </Dropdown>
-    </div>
+    <Select
+      isSearchable={ false }
+      value={ selected }
+      onChange={ handleChange }
+      options={ menuItems }
+    />
   );
 }
 

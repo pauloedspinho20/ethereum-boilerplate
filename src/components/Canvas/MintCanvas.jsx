@@ -1,10 +1,16 @@
 import { useRef, useState } from 'react';
+import { create } from 'ipfs-http-client';
 import Button from 'components/Button/Button';
+// import { useMoralisFile } from 'react-moralis';
+// import { ipfsUrl } from 'config';
 import Canvas from './Canvas';
+
+const ipfsClient = create('https://ipfs.infura.io:5001/api/v0');
 
 const MintCanvas = () => {
   const elementRef = useRef();
 
+  const ipfsBaseUrl = 'https://ipfs.infura.io/ipfs/';
   const colors = [
     { name: 'yellow', code: '#ffbf46' }, // Maximum Yellow Red
     { name: 'orage', code: '#ff6542' }, // Portland Orange
@@ -65,19 +71,44 @@ const MintCanvas = () => {
       setLoading(false);
       setStatus('Error');
     }
+  }; */
+
+  /*   const saveFileIPFS = async f => {
+    console.log(f);
+    const fileIpfs = await saveFile(f.name, file, { saveIPFS: true });
+    console.log(fileIpfs);
+  }; */
+
+  const uploadImageToIPFS = async (_name, _des, _imgBuffer) => { // Save file input to IPFS
+    const addedImage = await ipfsClient.add(_imgBuffer);
+    const metaDataObj = {
+      name: _name,
+      description: _des,
+      image: ipfsBaseUrl + addedImage.path,
+    };
+    const addedMetaData = await ipfsClient.add(JSON.stringify(metaDataObj));
+    console.log(ipfsBaseUrl + addedMetaData.path);
+    // mint(ipfsBaseUrl + addedMetaData.path);
+    console.log(await ipfsClient.add(_imgBuffer));
+
+    /*  client.pin.add(_imgBuffer).then(res => {
+      console.log(res);
+    }); */
   };
- */
 
   const getImageData = () => {
     const canvasEl = elementRef.current;
     const dataUrl = canvasEl.toDataURL('image/png');
+
+    /*  console.log('dataurl', dataUrl);
+    return dataUrl; */
     const buffer = Buffer.from(dataUrl.split(',')[1], 'base64');
     return buffer;
   };
 
   const startMintingProcess = () => {
     console.log(getImageData());
-    // createMetaDataAndMint(name, description, getImageData());
+    uploadImageToIPFS(name, description, getImageData());
   };
 
   return (

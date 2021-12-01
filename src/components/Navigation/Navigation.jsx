@@ -46,7 +46,10 @@ const Navigation = () => {
                 <NavigationItems />
               </ul>
               <div className="d-inline-flex">
-                <Chains />
+                <div className="me-4">
+                  <Chains />
+                </div>
+
                 <NativeBalance />
                 <Account />
               </div>
