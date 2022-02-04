@@ -1,3 +1,8 @@
+/* eslint-disable no-console */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable consistent-return */
+/* eslint-disable no-restricted-syntax */
+
 import process from 'process';
 import minimist from 'minimist';
 import { Web3Storage, getFilesFromPath } from 'web3.storage';

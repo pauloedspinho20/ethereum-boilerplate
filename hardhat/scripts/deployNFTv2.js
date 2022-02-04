@@ -15,7 +15,11 @@ async function main() {
 
   // We get the contract to deploy
   const Contract = await hre.ethers.getContractFactory("NFTv2");
-  const contract = await Contract.deploy("MetaParticles", "MP", "ipfs://");
+  const contract = await Contract.deploy(
+    "NFT Frontend Dapp", // _name
+    "NFTDAPP", // _symbol
+    "https://ipfs.io/ifps/<CID>" // _initBaseURI REPLACE <CID> WITH IPFS CID
+  );
 
   await contract.deployed();
 

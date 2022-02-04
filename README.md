@@ -70,6 +70,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Project config:
 
+- Run `yarn` on project root, ipfs_deployer and hardhat directories
 - Create .env
 - Change HTML metadata
 - Deactivate or remove all unused pages and components
@@ -83,10 +84,15 @@ To learn React, check out the [React documentation](https://reactjs.org/).
   - Run the following script (replace `<YOUR_TOKEN>` with Web3.Storage API Token):
     - `node put-files.js --token=<YOUR_TOKEN> README.md`
   - Save the generated CID (Needed for smart contract deployment)
+  - Replace `<CID>` on hardhat/scripts/NFTv2.js (or any other smart contract)
 
 ## Smart Contract deployment
 
 - Deploy contract using Hardhat
+  - Run: `cd hardhat`
+  - Run: `hardhat compile`
+  - Run: `npx hardhat run scripts/deployNFTv2.js --network kovan` (or any other script or network)
+  - Replace value of REACT_APP_CONTRACT_ADDRESS with deployed contract address
 
 ## Test and deployment:
 
