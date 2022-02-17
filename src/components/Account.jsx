@@ -48,9 +48,9 @@ function Account() {
   return (
     <>
       <div style={ styles.account } onClick={ () => setIsModalVisible(true) } aria-hidden="true">
-        <p style={ { marginRight: '5px', ...styles.text } }>
+        <div>
           { getEllipsisTxt(walletAddress, 6) }
-        </p>
+        </div>
         <Blockie currentWallet scale={ 3 } />
       </div>
       <Modal

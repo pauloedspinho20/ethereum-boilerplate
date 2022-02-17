@@ -1,6 +1,6 @@
 import { useMoralisDapp } from 'providers/MoralisDappProvider/MoralisDappProvider';
 import { useEffect, useState } from 'react';
-import { useMoralis, useMoralisWeb3Api, useMoralisWeb3ApiCall } from 'react-moralis';
+import { /* useMoralis, */ useMoralisWeb3Api, useMoralisWeb3ApiCall } from 'react-moralis';
 import useIpfs from 'hooks/useIpfs';
 
 const useNFTBalance = options => {

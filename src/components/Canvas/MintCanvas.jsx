@@ -1,123 +1,97 @@
-import { useRef, useState } from 'react';
-import { create } from 'ipfs-http-client';
+import { useRef, useState, useEffect } from 'react';
+import { getRandomColor } from 'helpers/functions';
+// import { useWeb3Contract } from 'react-moralis';
+
+// import { useMoralisDapp } from 'providers/MoralisDappProvider/MoralisDappProvider';
+// import { Web3Storage, File } from 'web3.storage/dist/bundle.esm.min';
+// import useMint from 'hooks/useMint';
 import Button from 'components/Button/Button';
-// import { useMoralisFile } from 'react-moralis';
-// import { ipfsUrl } from 'config';
+import ButtonMint from 'components/Button/Mint';
+// import abi from 'abis/NFTv2.json';
 import Canvas from './Canvas';
 
-const ipfsClient = create('https://ipfs.infura.io:5001/api/v0');
+// const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
+// const ipfsBaseUrl = process.env.REACT_APP_IPFS_URL;
+// const { walletAddress } = useMoralisDapp();
+// const client = new Web3Storage({ token: process.env.REACT_APP_WEB3_STORAGE_API_TOKEN });
 
 const MintCanvas = () => {
   const elementRef = useRef();
 
-  const ipfsBaseUrl = 'https://ipfs.infura.io/ipfs/';
-  const colors = [
-    { name: 'yellow', code: '#ffbf46' }, // Maximum Yellow Red
-    { name: 'orage', code: '#ff6542' }, // Portland Orange
-  ];
-  const getRandomNumber = (min, max) => Math.floor((Math.random() * (max - min)) + min);
+  const backgroundColor = getRandomColor();
 
-  const getRandomColor = () => {
-    const random = getRandomNumber(0, colors?.length);
-    const randomColor = colors?.splice(random, 1)[0];
-    return randomColor.code;
-  };
-  const background = getRandomColor();
+  const penColor = '#37393a';
 
-  const [ name, setName ] = useState('');
-  const [ description, setDescription ] = useState('');
-  /* const [ loading, setLoading ] = useState(false);
-  const [ status, setStatus ] = useState(''); */
+  const [ name, setName ] = useState('New NFT');
+  const [ description, setDescription ] = useState('Test NFT minting!');
+  const [ imgData, setImgData ] = useState(null);
+  const [ imgAttributes, setImgAttributes ] = useState(null);
 
+  /*
+  * Clear all drawings on canvas
+  */
   const clearCanvas = () => {
     const canvasEl = elementRef.current;
     canvasEl.clear();
   };
 
-  /* const mint = _uri => {
-      blockchain.smartContract.methods
-      .mint(blockchain.account, _uri)
-      .send({ from: blockchain.account })
-      .once('error', err => {
-        console.log(err);
-        setLoading(false);
-        setStatus('Error');
-      })
-      .then(receipt => {
-        console.log(receipt);
-        setLoading(false);
-        clearCanvas();
-        dispatch(fetchData(blockchain.account));
-        setStatus('Successfully minting your NFT');
-      });
-  }; */
+  /*
+* Upload iamge to IPFS
+*/
+  /* const uploadImageToIPFS = async (_name, _des, _imgData, _attributes) => {
+    const imgFilename = 'test.jpg';
+    const imgFiles = [
+      new File([ _imgData ], imgFilename),
+    ];
+    const imgCID = await client.put(imgFiles);
 
-  /*   const createMetaDataAndMint = async (_name, _des, _imgBuffer) => {
-    setLoading(true);
-    setStatus('Uploading to IPFS');
-    try {
-      const addedImage = await ipfsClient.add(_imgBuffer);
-      const metaDataObj = {
-        name: _name,
-        description: _des,
-        image: ipfsBaseUrl + addedImage.path,
-      };
-      const addedMetaData = await ipfsClient.add(JSON.stringify(metaDataObj));
-      console.log(ipfsBaseUrl + addedMetaData.path);
-      mint(ipfsBaseUrl + addedMetaData.path);
-    }
-    catch (err) {
-      console.log(err);
-      setLoading(false);
-      setStatus('Error');
-    }
-  }; */
-
-  /*   const saveFileIPFS = async f => {
-    console.log(f);
-    const fileIpfs = await saveFile(f.name, file, { saveIPFS: true });
-    console.log(fileIpfs);
-  }; */
-
-  const uploadImageToIPFS = async (_name, _des, _imgBuffer) => { // Save file input to IPFS
-    const addedImage = await ipfsClient.add(_imgBuffer);
-    const metaDataObj = {
+    const imgURL = `${ipfsBaseUrl}/${imgCID}/${imgFilename}`;
+    const metadataObj = {
       name: _name,
       description: _des,
-      image: ipfsBaseUrl + addedImage.path,
+      image: imgURL,
+      animation_url: imgURL,
+      external_url: 'https://site.com',
+      attributes: _attributes,
     };
-    const addedMetaData = await ipfsClient.add(JSON.stringify(metaDataObj));
-    console.log(ipfsBaseUrl + addedMetaData.path);
-    // mint(ipfsBaseUrl + addedMetaData.path);
-    console.log(await ipfsClient.add(_imgBuffer));
 
-    /*  client.pin.add(_imgBuffer).then(res => {
-      console.log(res);
-    }); */
-  };
+    const metadataFiles = [
+      new File([ JSON.stringify(metadataObj) ], 'test.json'),
+    ];
 
-  const getImageData = () => {
-    const canvasEl = elementRef.current;
-    const dataUrl = canvasEl.toDataURL('image/png');
+    const metadataCID = await client.put(metadataFiles);
+    return metadataCID;
+  }; */
+  /*
+  * Start minting process
+  */
 
-    /*  console.log('dataurl', dataUrl);
-    return dataUrl; */
-    const buffer = Buffer.from(dataUrl.split(',')[1], 'base64');
-    return buffer;
-  };
-
-  const startMintingProcess = () => {
-    console.log(getImageData());
-    uploadImageToIPFS(name, description, getImageData());
-  };
+  useEffect(() => {
+    console.log('wefwefwefwefwef');
+    setImgAttributes([
+      {
+        trait_type: 'Background Color',
+        value: backgroundColor,
+      },
+      {
+        trait_type: 'Pencil Color',
+        value: penColor,
+      },
+    ]);
+  }, [ backgroundColor, penColor ]);
 
   return (
     <div className="canvas">
       <div className="d-flex justify-content-center mb-4">
-        { background && (
+        { backgroundColor && penColor && (
         <Canvas
           elementRef={ elementRef }
-          background={ background }
+          backgroundColor={ backgroundColor }
+          penColor={ penColor }
+          canvasImgData={ data => {
+            console.log('IMGEEEEEEE', data);
+            setImgData(data);
+          } }
         />
         ) }
       </div>
@@ -156,6 +130,7 @@ const MintCanvas = () => {
           </div>
         </div>
       </div>
+
       <div className="d-flex justify-content-center">
         <Button
           theme="blue"
@@ -168,16 +143,14 @@ const MintCanvas = () => {
         >
           Clear
         </Button>
-        <Button
-          theme="orange"
-          size="s"
-          onClick={ e => {
-            e.preventDefault();
-            startMintingProcess();
-          } }
-        >
-          Mint
-        </Button>
+
+        <ButtonMint
+          amount={ 1 }
+          imgData={ imgData }
+          imgAttributes={ imgAttributes }
+          name={ name }
+          description={ description }
+        />
       </div>
     </div>
 

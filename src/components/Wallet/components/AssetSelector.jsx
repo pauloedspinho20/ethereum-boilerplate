@@ -1,4 +1,4 @@
-import { shape } from 'prop-types';
+import { shape, func } from 'prop-types';
 import useERC20Balance from 'hooks/useERC20Balance';
 import { useMoralis } from 'react-moralis';
 import { Image, Select } from 'antd';
@@ -65,7 +65,7 @@ function AssetSelector({ setAsset, style }) {
 }
 
 AssetSelector.propTypes = {
-  setAsset: shape({}),
+  setAsset: func,
   style: shape({}),
 };
 
