@@ -45,6 +45,10 @@ module.exports = {
     currency: "USD",
   },
   etherscan: {
-    apiKey: process.env.ETHERSCAN_API_KEY,
+    apiKey: {
+      mainnet: process.env.ETHERSCAN_API_KEY,
+      ropsten: process.env.ETHERSCAN_API_KEY,
+      kovan: process.env.ETHERSCAN_API_KEY,
+    },
   },
 };

@@ -2,7 +2,7 @@ import {
   Card, Form, notification,
 } from 'antd';
 import { useMemo, useState, useEffect } from 'react';
-import contractInfo from 'contracts/NFTv2.json';
+import contractInfo from 'abis/NFTv2.json';
 import Address from 'components/Address/Address';
 import { useMoralis, useMoralisQuery } from 'react-moralis';
 import { getEllipsisTxt } from 'helpers/formatters';

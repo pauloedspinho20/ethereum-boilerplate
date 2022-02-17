@@ -72,8 +72,6 @@
 .blue_light { color: $blue; }
 
 html {
-  // scroll-behavior: smooth;
-
   .container {
     padding-right: 35px;
     padding-left: 35px;
@@ -202,6 +200,10 @@ blockquote {
 button {
   font-family: $fonts;
   outline: 0 !important;
+}
+
+.select div {
+  border-radius: 50px;
 }
 
 .show {

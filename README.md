@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Main technologies
+
+- React.js
+- Bootstrap 5
+- Ethers.js
+- Moralis
+- Web3.storage
+- Hardhat
+
 ## Requirements
 
 - Node version 14 or higher
@@ -52,11 +61,21 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## TYPES OF NFTS
 
-- Canvas
-- Generator with Layers
-- Pre uploaded images on IPFS
-- On-chain SVG
-- Generated SVG file
+### Canvas
+
+- Users can draw on a canvas HTML element and mint the resulting image as NFT
+
+### Generator with Layers
+
+- Users can mint a NFT and a random image is generated and uploaded to IPFS
+
+### Pre uploaded files on IPFS (Marketplace style)
+
+- Files are uploaded to IPFS and users can check the existing gallery, and mint the desired ones.
+
+### On-chain SVG image data
+
+- Use any kind of SVG generator for image NFT's with image data saved on-chain (no IPFS)
 
 # PROJECT SETUP AND DEPLOYMENT PROCESS
 
@@ -75,26 +94,37 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 - Change HTML metadata
 - Deactivate or remove all unused pages and components
 - Style the template layout
-- Choose only the wanted networks
+- Choose only the wanted networks on `src/helpers/networks.js`
   - If .env environment is 'development' or 'staging' use Network switcher with wanted mainet and testnet;
   - If .env environment is 'production' don't use network switcher and set to mainnet;
+
+## IPFS deployment (not on-chain NFTs)
+
 - Run web3.storage upload script for CID creation
+
   - Run: `cd ipfs_deployer`
   - Change ipfs_deployer/README.md file content
+  - IMPORTANT! If the NFT files are pre-generated, put them on this folder
   - Run the following script (replace `<YOUR_TOKEN>` with Web3.Storage API Token):
     - `node put-files.js --token=<YOUR_TOKEN> README.md`
   - Save the generated CID (Needed for smart contract deployment)
-  - Replace `<CID>` on hardhat/scripts/NFTv2.js (or any other smart contract)
+  - IMPORTANT! If the NFT files are pre-generated, Replace `<CID>` on hardhat/scripts/NFTv2.js (or any other smart contract), otherwise remove the tag and the `/`
 
 ## Smart Contract deployment
 
 - Deploy contract using Hardhat
   - Run: `cd hardhat`
+  - Run: `cp .env.example .env`
+  - Set .env variables
+  - Set contract variable values for:
+    - `cost`: Cost of NFT minting in Ether
+    - `maxSupply`: Max supply of NFTs for this contract
+    - `maxMintAmount`: Max number of NFT's minting per wallet
   - Run: `hardhat compile`
-  - Run: `npx hardhat run scripts/deployNFTv2.js --network kovan` (or any other script or network)
+  - Run: `npx hardhat run scripts/deployNFTv2.js --network ropsten` (or any other script or network)
   - Replace value of REACT_APP_CONTRACT_ADDRESS with deployed contract address
 
-## Test and deployment:
+## Test and App deployment:
 
 - Test all blockchain interactions
 - Deploy app to IPFS via provider (Moralis or Fleek)

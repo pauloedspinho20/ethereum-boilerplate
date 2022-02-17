@@ -3,9 +3,9 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-restricted-syntax */
 
-import process from 'process';
-import minimist from 'minimist';
 import { Web3Storage, getFilesFromPath } from 'web3.storage';
+import minimist from 'minimist';
+import process from 'process';
 
 async function main() {
   const args = minimist(process.argv.slice(2));

@@ -18,7 +18,7 @@ async function main() {
   const contract = await Contract.deploy(
     "NFT Frontend Dapp", // _name
     "NFTDAPP", // _symbol
-    "https://ipfs.io/ifps/<CID>" // _initBaseURI REPLACE <CID> WITH IPFS CID
+    "https://ipfs.io/ipfs/" // _initBaseURI
   );
 
   await contract.deployed();
